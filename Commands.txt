@@ -1,0 +1,66 @@
+1. sudo apt update
+-Updates your Linux system’s package list by fetching the latest information.
+
+2. sudo apt upgrade
+-Installs the available updates for the currently installed packages on your system, based on the refreshed package list obtained by apt update
+
+3. sudo systemctl status
+-Checks the current status of a system service or unit (like a background service).
+-To exit = Ctrl+q
+
+4. sudo apt install nginx
+-Installs NGINX server on our terminal.
+
+5. sudo systemctl status nginx
+-Checks the current status of NGINX server.
+
+6. cd /var/www/
+-In an Nginx server, the command cd /var/www/ changes your current directory to /var/www/, which is typically the default root directory where website files are stored and served by Nginx.
+
+7. sudo rm index.nginx-debian.html
+-Removes default html file of NGINX server (The interface seen when we start the NGINX on our Terminal)
+
+8. sudo touch index.html
+-The command sudo touch index.html creates a new, empty file named index.html in the current directory if it does not already exist. 
+-If the file already exists, the touch command updates its access and modification timestamps to the current time without changing the file's content.
+
+9. nano index.html 
+-The command nano index.html opens the file named index.html in the Nano text editor directly from the command line.
+
+10. sudo touch style.css
+-The command sudo touch index.html creates a new, empty file named style.css in the current directory if it does not already exist. 
+-If the file already exists, the touch command updates its access and modification timestamps to the current time without changing the file's content.
+
+11. nano style.css
+-The command nano style.css opens the file named style.css in the Nano text editor directly from the command line.
+
+12. cd /etc/nginx/sites-available/
+-The default file in /etc/nginx/sites-available/ is a server block configuration file that usually comes with Nginx installations on Debian/Ubuntu systems. 
+-The directory /etc/nginx/sites-available/ on an Nginx server is conventionally used to store individual site configuration files, also known as server blocks or virtual hosts.
+
+13. cd /etc/nginx/conf.d/yoursite.conf
+-It stores additional configuration snippets or server blocks that are included by the main /etc/nginx/nginx.conf file through an include directive. 
+-Common use includes adding load balancing configs, SSL settings, reverse proxy configurations, or site-specific rules.
+
+14. nano default
+-The above directory consists of a Default file that consists of following code : 
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
+
+    server_name _;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+-In the above code we need to change the root/var/www/ to our custom created file or sites path.
+
+15. sudo nginx -t
+-The command is used to test the Nginx configuration files for syntax errors and correctness without restarting or reloading the server. It checks all the configuration files Nginx uses (like nginx.conf and included files) and then reports whether the syntax is OK or if there are errors.
+
+16. sudo systemctl restart nginx
+-The command completely stops and then starts the Nginx web server service on Linux systems that use systemd for service management.
